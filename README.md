@@ -1,2 +1,2 @@
-# django-app-template
+# restframework
 Working through the Django REST Framework tutorial.
