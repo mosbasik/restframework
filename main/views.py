@@ -1,8 +1,9 @@
 from django.contrib.auth.models import User
 
-from rest_framework import permissions, viewsets
+from rest_framework import permissions, viewsets, renderers
 from rest_framework.decorators import api_view, detail_route
 from rest_framework.response import Response
+
 
 from main.models import Snippet
 from main.serializers import SnippetSerializer, UserSerializer
@@ -29,7 +30,7 @@ class SnippetViewSet(viewsets.ModelViewSet):
         IsOwnerOrReadOnly,
     )
 
-    @detail_route
+    @detail_route(renderer_classes=[renderers.StaticHTMLRenderer])
     def highlight(self, request, *args, **kwargs):
         snippet = self.get_object()
         return Response(snippet.highlighted)
